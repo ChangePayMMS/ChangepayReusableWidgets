@@ -5,8 +5,8 @@ class CreatePasswordBlock extends StatefulWidget {
   final String enterNameHintText;
   final String createPasswordHintText;
   final String confirmPasswordHintText;
-  final Function(String) submitPassword;
-  final Function(String)? submitName;
+  final void Function(String) submitPassword;
+  final void Function(String)? submitName;
   final String submitButtonText;
   final String confirmPasswordErrorText;
   final String? Function(String?) nameValidator;
@@ -50,7 +50,6 @@ class _CreatePasswordBlockState extends State<CreatePasswordBlock> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 351,
       padding: const EdgeInsets.only(bottom: 12, left: 17, right: 17),
       decoration: BoxDecoration(
         color: EsamudaayTheme.of(context).colors.backgroundColor,
@@ -204,7 +203,7 @@ class _CreatePasswordBlockState extends State<CreatePasswordBlock> {
             height: 42,
             child: RaisedButton(
               //We need to show the cta button in disabled color in case any of the field inputs are invalid.
-              color: ((formKey.currentState?.validate() ?? false) &&
+              color: ((formKey.currentState?.validate() ?? true) &&
                       validateConfirmPassword())
                   ? EsamudaayTheme.of(context).colors.primaryColor
                   : EsamudaayTheme.of(context).colors.disabledAreaColor,

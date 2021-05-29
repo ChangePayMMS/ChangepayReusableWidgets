@@ -41,7 +41,6 @@ class _LoginWithPasswordBlockState extends State<LoginWithPasswordBlock> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 351,
       padding: const EdgeInsets.only(bottom: 12, left: 17, right: 17),
       decoration: BoxDecoration(
         color: EsamudaayTheme.of(context).colors.backgroundColor,

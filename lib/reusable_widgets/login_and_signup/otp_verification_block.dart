@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpVerificationBlock extends StatefulWidget {
-  final String phoneNumber;
+  final String? phoneNumber;
   final bool otpEntered;
   final Function(String pin) verifyOTP;
   final Function(String pin) updateValidationRequest;
@@ -76,7 +76,6 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 351,
       padding: const EdgeInsets.only(bottom: 12, left: 5, right: 5),
       decoration: BoxDecoration(
         color: EsamudaayTheme.of(context).colors.backgroundColor,

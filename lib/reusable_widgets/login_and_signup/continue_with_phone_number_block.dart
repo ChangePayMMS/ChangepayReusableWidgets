@@ -7,7 +7,7 @@ class ContinueWithPhoneNumberBlock extends StatefulWidget {
   final String validPhoneErrorMessage;
   final String submitButtonText;
   final String phoneFieldHintText;
-  final bool Function(String?) isValidPhoneNumber;
+  final bool Function(String) isValidPhoneNumber;
 
   const ContinueWithPhoneNumberBlock({
     Key? key,
@@ -25,29 +25,46 @@ class ContinueWithPhoneNumberBlock extends StatefulWidget {
 
 class _ContinueWithPhoneNumberBlockState
     extends State<ContinueWithPhoneNumberBlock> {
-  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   // this formkey wraps the username field and provide default input validation.
-  GlobalKey<FormState> formKey = new GlobalKey();
+  GlobalKey<FormState> _formKey = new GlobalKey();
+
+  FocusNode _focusNode = new FocusNode();
+
+  bool _isPhoneNumberFieldFocused = false;
 
   // the error styling for validation in intl_phone_number_input field does not meet the UI requirements.
   // so using this variable to create custom input validation for phone number field.
-  bool showPhoneNumberError = false;
+  bool _showPhoneNumberError = false;
 
   bool _isPhoneNumberValid = false;
 
   PhoneNumber? _phoneNumber;
 
+  void focusNodeListener() {
+    setState(() {
+      _isPhoneNumberFieldFocused = _focusNode.hasFocus;
+    });
+  }
+
+  @override
+  void initState() {
+    _focusNode.addListener(focusNodeListener);
+    super.initState();
+  }
+
   @override
   void dispose() {
-    phoneController.dispose();
+    _focusNode.removeListener(focusNodeListener);
+    _phoneController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 351,
+      // width: 351,
       padding: const EdgeInsets.only(bottom: 12, left: 17, right: 17),
       decoration: BoxDecoration(
         color: EsamudaayTheme.of(context).colors.backgroundColor,
@@ -61,16 +78,20 @@ class _ContinueWithPhoneNumberBlockState
             height: 12,
           ),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             decoration: BoxDecoration(
               border: Border.all(
-                  color: EsamudaayTheme.of(context)
-                      .colors
-                      .disabledAreaColor
-                      .withOpacity(0.3)),
+                  color: _isPhoneNumberFieldFocused
+                      ? EsamudaayTheme.of(context).colors.primaryColor
+                      : EsamudaayTheme.of(context)
+                          .colors
+                          .disabledAreaColor
+                          .withOpacity(0.3)),
               borderRadius: BorderRadius.circular(4),
             ),
             child: InternationalPhoneNumberInput(
-              textFieldController: phoneController,
+              textFieldController: _phoneController,
+              focusNode: _focusNode,
               scrollPadding: EdgeInsets.zero,
               selectorConfig: SelectorConfig(
                   showFlags: true, selectorType: PhoneInputSelectorType.DIALOG),
@@ -96,7 +117,7 @@ class _ContinueWithPhoneNumberBlockState
             ),
           ),
           // show error text if phone number is not valid.
-          if (showPhoneNumberError) ...[
+          if (_showPhoneNumberError) ...[
             const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerLeft,
@@ -131,11 +152,11 @@ class _ContinueWithPhoneNumberBlockState
                     }
                   // in case any field's input valus is invalid, we trigger validity check to display relevant error.
                   : () {
-                      formKey.currentState!.validate();
+                      _formKey.currentState?.validate();
                       validatePhoneNumber(_phoneNumber);
                       if (!_isPhoneNumberValid) {
                         setState(() {
-                          showPhoneNumberError = true;
+                          _showPhoneNumberError = true;
                         });
                       }
                     },
@@ -159,21 +180,20 @@ class _ContinueWithPhoneNumberBlockState
   }
 
   void validatePhoneNumber(PhoneNumber? number) {
-    debugPrint(number?.parseNumber());
     _phoneNumber = number;
     setState(
       () {
         if (_phoneNumber != null) {
-          if (widget.isValidPhoneNumber(_phoneNumber!.phoneNumber!) &&
+          if (widget.isValidPhoneNumber(_phoneNumber?.phoneNumber??'') &&
               _phoneNumber!.parseNumber().length > 9) {
             this._isPhoneNumberValid = true;
-            this.showPhoneNumberError = false;
+            this._showPhoneNumberError = false;
           } else {
             this._isPhoneNumberValid = false;
           }
         } else {
           this._isPhoneNumberValid = false;
-          this.showPhoneNumberError = true;
+          this._showPhoneNumberError = true;
         }
       },
     );
