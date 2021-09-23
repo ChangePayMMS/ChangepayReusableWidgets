@@ -142,6 +142,7 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
 
                         widget.updateValidationRequest(pin);
                       },
+                      controller: _textEditingController,
                     ),
                   ),
                 ],
