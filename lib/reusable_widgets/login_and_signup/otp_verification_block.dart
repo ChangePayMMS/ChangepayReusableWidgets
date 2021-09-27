@@ -39,7 +39,7 @@ class OtpVerificationBlock extends StatefulWidget {
 
 class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
   late Timer _timer;
-  late TextEditingController _textEditingController;
+  late final TextEditingController _textEditingController;
   int _start = 30;
 
   void _startTimer() {
