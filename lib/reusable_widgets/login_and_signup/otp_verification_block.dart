@@ -39,6 +39,7 @@ class OtpVerificationBlock extends StatefulWidget {
 
 class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
   late Timer _timer;
+  final TextEditingController _textEditingController = TextEditingController();
   int _start = 30;
 
   void _startTimer() {
@@ -70,6 +71,7 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
   @override
   void dispose() {
     _timer.cancel();
+    _textEditingController.dispose();
     super.dispose();
   }
 
@@ -139,6 +141,7 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
 
                         widget.updateValidationRequest(pin);
                       },
+                      controller: _textEditingController,
                     ),
                   ),
                 ],
@@ -187,6 +190,7 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
           _start == 0
               ? InkWell(
                   onTap: () {
+                    _textEditingController.clear();
                     widget.resendOtpRequest();
                     _start = 30;
                     _startTimer();
