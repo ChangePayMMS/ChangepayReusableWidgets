@@ -37,7 +37,8 @@ class LoginOutlineBorderButton extends StatelessWidget {
               style: EsamudaayTheme.of(context)
                   .textStyles
                   .sectionHeading1Regular
-                  .copyWith(color: EsamudaayTheme.of(context).colors.primaryColor),
+                  .copyWith(
+                      color: EsamudaayTheme.of(context).colors.primaryColor),
             ),
           ),
         ),
