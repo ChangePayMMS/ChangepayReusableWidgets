@@ -1,4 +1,5 @@
 import 'package:esamudaay_themes/esamudaay_themes.dart';
+import 'package:esamudaay_widgets/constants/common_regex.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -183,18 +184,15 @@ class _ContinueWithPhoneNumberBlockState
     _phoneNumber = number;
     setState(
       () {
-        if (_phoneNumber != null) {
-          if (widget.isValidPhoneNumber(_phoneNumber?.phoneNumber??'') &&
-              _phoneNumber!.parseNumber().length > 9) {
-            this._isPhoneNumberValid = true;
-            this._showPhoneNumberError = false;
-          } else {
-            this._isPhoneNumberValid = false;
-          }
-        } else {
-          this._isPhoneNumberValid = false;
-          this._showPhoneNumberError = true;
+        if (CommonRegex.phoneRegexIN
+            .hasMatch(_phoneNumber?.phoneNumber ?? '')) {
+          this._isPhoneNumberValid = true;
+          this._showPhoneNumberError = false;
+          return;
         }
+        this._isPhoneNumberValid = false;
+        this._showPhoneNumberError = true;
+        return;
       },
     );
   }
