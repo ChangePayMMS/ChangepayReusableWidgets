@@ -49,8 +49,9 @@ class PopupBanner extends StatelessWidget {
                       .textStyles
                       .buttonText2
                       .copyWith(
-                          color:
-                              EsamudaayTheme.of(context).colors.backgroundColor),
+                          color: EsamudaayTheme.of(context)
+                              .colors
+                              .backgroundColor),
                 ),
                 color: EsamudaayTheme.of(context).colors.secondaryColor,
                 onPressed: onTap,

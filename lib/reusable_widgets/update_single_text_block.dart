@@ -64,10 +64,14 @@ class _UpdateSingleTextBlockState extends State<UpdateSingleTextBlock> {
                     .textStyles
                     .sectionHeading2
                     .copyWith(
-                        color:
-                            EsamudaayTheme.of(context).colors.disabledAreaColor),
+                        color: EsamudaayTheme.of(context)
+                            .colors
+                            .disabledAreaColor),
                 // override the error styling here to match it with custom error text shown for phone number validation error.
-                errorStyle: EsamudaayTheme.of(context).textStyles.body2.copyWith(
+                errorStyle: EsamudaayTheme.of(context)
+                    .textStyles
+                    .body2
+                    .copyWith(
                       color: EsamudaayTheme.of(context).colors.secondaryColor,
                     ),
                 errorBorder: UnderlineInputBorder(
@@ -104,7 +108,8 @@ class _UpdateSingleTextBlockState extends State<UpdateSingleTextBlock> {
                     .textStyles
                     .sectionHeading2
                     .copyWith(
-                        color: EsamudaayTheme.of(context).colors.backgroundColor),
+                        color:
+                            EsamudaayTheme.of(context).colors.backgroundColor),
               ),
             ),
           ),
