@@ -42,7 +42,7 @@ class PopupBanner extends StatelessWidget {
               const SizedBox(
                 width: 8.0,
               ),
-              FlatButton(
+              TextButton(
                 child: Text(
                   buttonText,
                   style: EsamudaayTheme.of(context)
@@ -53,7 +53,10 @@ class PopupBanner extends StatelessWidget {
                               .colors
                               .backgroundColor),
                 ),
-                color: EsamudaayTheme.of(context).colors.secondaryColor,
+                style: TextButton.styleFrom(
+                  foregroundColor:
+                      EsamudaayTheme.of(context).colors.secondaryColor,
+                ),
                 onPressed: onTap,
               ),
               const SizedBox(
