@@ -17,13 +17,13 @@ dependencies:
 
   intl_phone_number_input: ^0.7.0+2
 
-  fluttertoast: ^8.0.6
+  fluttertoast: ^8.1.2
 
 
   esamudaay_themes:
     git:
       url: https://anushka_agrawal@bitbucket.org/ese1/esm_comp_themes.git
-      ref: v0.0.5
+      ref: flutter-3.13.5-bump
   
 
 dev_dependencies:
