@@ -140,7 +140,7 @@ class _ContinueWithPhoneNumberBlockState
             child: ElevatedButton(
               //We need to show the cta button in disabled color in case any of the field inputs are invalid.
               style: ElevatedButton.styleFrom(
-                foregroundColor: _isPhoneNumberValid
+                backgroundColor: _isPhoneNumberValid
                     ? EsamudaayTheme.of(context).colors.primaryColor
                     : EsamudaayTheme.of(context).colors.disabledAreaColor,
                 elevation: 0.0,

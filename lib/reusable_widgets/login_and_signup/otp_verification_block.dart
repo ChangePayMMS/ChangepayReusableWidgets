@@ -156,7 +156,7 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
             height: 42,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: EsamudaayTheme.of(context).colors.primaryColor,
+                backgroundColor: EsamudaayTheme.of(context).colors.primaryColor,
                 elevation: 0.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),

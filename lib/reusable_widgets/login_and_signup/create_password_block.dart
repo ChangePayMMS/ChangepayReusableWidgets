@@ -204,7 +204,7 @@ class _CreatePasswordBlockState extends State<CreatePasswordBlock> {
             child: ElevatedButton(
               //We need to show the cta button in disabled color in case any of the field inputs are invalid.
               style: ElevatedButton.styleFrom(
-                foregroundColor: ((formKey.currentState?.validate() ?? true) &&
+                backgroundColor: ((formKey.currentState?.validate() ?? true) &&
                         validateConfirmPassword())
                     ? EsamudaayTheme.of(context).colors.primaryColor
                     : EsamudaayTheme.of(context).colors.disabledAreaColor,

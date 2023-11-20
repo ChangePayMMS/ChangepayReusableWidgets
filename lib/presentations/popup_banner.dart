@@ -54,7 +54,7 @@ class PopupBanner extends StatelessWidget {
                               .backgroundColor),
                 ),
                 style: TextButton.styleFrom(
-                  foregroundColor:
+                  backgroundColor:
                       EsamudaayTheme.of(context).colors.secondaryColor,
                 ),
                 onPressed: onTap,
