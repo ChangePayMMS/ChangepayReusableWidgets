@@ -154,11 +154,13 @@ class _OtpVerificationBlockState extends State<OtpVerificationBlock> {
           SizedBox(
             width: 157.4,
             height: 42,
-            child: RaisedButton(
-              color: EsamudaayTheme.of(context).colors.primaryColor,
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: EsamudaayTheme.of(context).colors.primaryColor,
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ),
               onPressed: widget.otpEntered
                   ? () async {

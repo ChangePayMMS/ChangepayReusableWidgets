@@ -95,14 +95,16 @@ class _LoginWithPasswordBlockState extends State<LoginWithPasswordBlock> {
           SizedBox(
             width: 157.4,
             height: 42,
-            child: RaisedButton(
+            child: ElevatedButton(
               //We need to show the cta button in disabled color in case any of the field inputs are invalid.
-              color: isFormValid
-                  ? EsamudaayTheme.of(context).colors.primaryColor
-                  : EsamudaayTheme.of(context).colors.disabledAreaColor,
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: isFormValid
+                    ? EsamudaayTheme.of(context).colors.primaryColor
+                    : EsamudaayTheme.of(context).colors.disabledAreaColor,
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ),
               onPressed: () async {
                 FocusScope.of(context).requestFocus(FocusNode());
